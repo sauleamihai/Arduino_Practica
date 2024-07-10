@@ -1,8 +1,7 @@
 ## Arduino_Practica
-Aici voi pune materiale și proiecte realizate în timpul practicii toate materialele si librarile folosite vor fi puse mai jos:
+Aici voi pune materiale și proiecte realizate în timpul practicii toate materialele si librarile folosite vor fi puse mai jos placa de dezvoltare Arduino Uno:
 
 
-Arduino uno
 ![image](https://github.com/sauleamihai/Arduino_Practica/assets/104733119/e23e390c-89f1-4fc9-a52f-aa499c39bdc0)
 
 LCD
