@@ -1,0 +1,9 @@
+SHIFT REGISTER
+-out2       -Vcc(POWER)
+-out3       -out1
+-out4       -data
+-out5       -output enable activ in 0(GND)
+-out6       -rclk
+-out7       -srclk
+-out8       -mr(POWER)(false)(memory reset) 
+-gnd(GND)   -pin pentru conectarea altor shift registers
