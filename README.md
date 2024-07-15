@@ -10,9 +10,13 @@ LCD
 KEYPAD
 ![image](https://github.com/sauleamihai/Arduino_Practica/assets/104733119/577b8b1c-fe12-4ccd-bebf-fe3afc99076e)
 
+SHIFT REGISTER
+![image](https://github.com/user-attachments/assets/3bb86395-3f3a-4ac0-8ae5-069e663e5f0f)
+
+
 #Librarii folosite pana acum:
 
 -include <Adafruit_LiquidCrystal.h>
 -include <Keypad.h>
 -include <LiquidCrystal.h>
-
+-librarie spcifica inreruperilor <avr/interrupt.h>
