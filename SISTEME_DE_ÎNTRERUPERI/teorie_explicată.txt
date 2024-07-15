@@ -1,0 +1,29 @@
+Întreruperea reprezintă suspendarea procesului normal
+de execuție a programului pentru rezolvarea unei probleme
+prioritare
+
+Din cauza unei singure unități logice operațiile se execută secvenția dar există și cazul
+în care o activitate trebuie rulată în timpul alteia,rutine de deservire a întreruperilor.
+(fiecărui eveniment i se asociază o întrerupere)
+Cele mai des întâlnite întreruperi sunt cele externe provocate de evenimente externe(cererea de întrerupere
+apare la nivel hardware)
+ATmega328P are 26 de surse de întrrupere
+Arduino UNO are doi pini care pot genera evenimente externe INT0 INT1 pinii 2 și 3 de pe placa arduino
+UNO(întreruperile se pot genera pe frontul crescător sau descrescător al semnalului de intrare sau de nivelul de 
+low al acestuia
+Pentru cazul întrruperilor externe registrele EICRA,EIMSK,EIFR SREG
+
+EICRA biți regisrtrului sunt ISC11 ISC10 ISC01 ISC00
+ISC1n controlează sensul sensul INT1 INT1 activare bit 7 SREG(biții 3:2)
+00-valoare LOW pe bitul INT1
+01-schimbarea valorii logice la pinul INT1
+10-schimbarea din high în low a valorii pinului INT1
+11-schimbarea din LOW în high a valorri INT1
+Pentru INT0 este la fel numai ca se folosesc biții 1:0 ai EICRA
+EIMSC -folosit pentru activarea sau dezactivarea masca unuia dintre pini INT0 INT1 
+EIFR-flag folosit pentru înregistrarea aparției unei întrruperi INTF0-bitul 0 INTF1-bitul 1
+
+Tratatrea se face în interiorul funcției ISR 
+sintaxa:
+ISR(isr_vector){};
+
