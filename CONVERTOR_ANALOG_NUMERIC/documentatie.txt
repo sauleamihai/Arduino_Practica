@@ -1,0 +1,37 @@
+5V-1binar 0V-0binar 
+Anlaog to digital converter 
+Rezoluția este de 8 10 12 biți
+-prevăzut cu  multiplexor anlogic ,diponibile mai multe canale de intrare 
+-unele microcontrolere sunt echipate și cu un circuit de eșantionare memorare 
+ATMega 328 deține un singur circuit ADC cu comparații succesive rez 10 biți 
+-convertor conectat la un multiplexor analog cu 6 canale 
+-aceste 6 intrati ale MUX sunt A0-A5 ale plăcii ARDUINO UNO
+-circuit de eșantionare si memorare integrat 
+Modulu ADC convertește o mărime anlogică de intrare într-o valoare digitală pe 10 biți prin metoda aproximării succesive
+configurarea 
+registrii folosiți ADMUX ADCSRA 
+
+ 7       6       5      4      3      2        1         0
+REFS1  REFS0   ADLAR          MUX3   MUX2     MUX1      MUX0
+
+REFS1 REFS0 -selectarea referintei
+tensiunea de referinta 
+00 Vref este oprită
+01-AVCC este utilizată
+10-neutilizabil
+11-tensiune interna de 1.1V
+ADLAR-1 ajustare la stanga 0 ajustare la dreapta a rezultatului
+MUXn-selectare a canalului 
+
+ADCSRA
+  7       6       5      4      3        2        1         0
+ADEN     ADSC   ADATE   ADIF   ADIE    ADPS2     ADPS1     ADPS0
+
+ADEN-activare dezactivare mod ADC
+ADSC-pornire conversie ADC
+ADATE-pornire pe frontul pozitiv al unui semnal dat daca este 1(semnal setat pe ADCSRB)
+ADIF-automat setat 
+ADIE-activare intrerupere (sfârșitul conversiei produce o întrerupere în sistem)(Bit 7 SREG)
+ ADPS0-setare prescalar penrtu ADC det factorul de diviziune între oscilator placa si semnalul utilizat de ADC 
+ 
+ ADC=Vin*Vref/1024

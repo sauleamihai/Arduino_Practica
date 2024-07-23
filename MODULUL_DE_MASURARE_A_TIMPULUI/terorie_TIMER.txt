@@ -1,0 +1,69 @@
+-resursă care permite măsurarea cuantelor de timp(TIMER)
+-acesta este implementat în hardware separat de unitatea aritmetică și logică
+-timpul scurs este acumulat într-un așa zis acumulator 
+-valoarea stocată se află în registrul TCNT
+-incremetare acumulator atunci când acumulatorul transmite un puls 
+-puls scurgerea unei cuante de timp 
+-modulul TIMER nu poate avea un acumulator mai mare de 1 2 bytes nu poate acumula o valoare mai mare 
+de 255 respectiv 65535
+-timerul trebuie să genereze o întrerupere atunci când a ajuns la val maximă admisă
+-overflow
+
+-variabilă de prag MAX-valoarea care dacă este atinsă TIMER trebuie să genereze o întrupere
+
+Tipuri de configurare
+-se resetează la 0(de la 0 la MAX-1)
+-începe să numere în jos
+-generează un eveniment însă nu se resetează
+-generează un eveniment și se resetează(one shot timer)
+
+La fiecare acumulare automată are loc o comparație între TIMER și val stocată în OCRn
+Atmega 328P conține 3 registre de acumulare care permit numărearea în paralel
+
+MODURI DE FUNCȚIONARE
+normal numararea începe la 0 până la 255
+CTC-val 0 .Registrul OCR stabilește valoarea la care se face depășire 
+fast PWM.Registrul TCNT ,se incrementează până la depășire apoi se decrementeză 0-255,OCR PINUl OC0x generează forme de undă
+PWM
+
+REGIȘTRII
+Timeru-l 0
+TCCR0A(timer counter control register)TCCR0B
+
+TCCR0A
+    7      6      5       4      3     2     1       0
+  COM0A1 COM0A0 COM0B1  COM0B0             WGM01  WGM00-forma de undă de către timer 
+  
+  -COM0A1 COM0A0
+  modul de funcționare cu genereare de forme de undă 00-OC0A-dez,01-WGM02=0,10-WGM02-OC0A-con,11-log inv
+  -COM0B1  COM0B0
+   00-OC0B-decon 01-mod functionare tip înapoi,10-neinverst ,11-logică inversată
+   
+  
+TCCR0B
+    7      6      5       4      3     2     1     0
+  FOC0A  FOC0B                 WGM02  CS02  CS01  CS00
+  
+  FOC0A  FOC0B -CS02  CS01  CS00-configurare prescalarului
+  
+  TIMSK0-registru pentru gestionarea întrruperilor 
+  bit 0-TOIE-activeză sau dez intrruperea
+  bit 1-OCIEA-TCNT==OC0A
+  bit 2-OCIEB-TCNT==OC0B
+  
+  TIFR0- activare automată
+  Bitul 0-TOV TCNT0>TOP
+  Bitul 1-OCFA TCNT=OCRA0
+  Bitul 2-OCFA TCNT=OCRB0
+  
+  ISR(TIMER0_OVF_vect)
+  {}
+  -rutina de deservire a intruperii generate de depasirea valorii de TOP
+  ISR(TIMER0_COMPA_vect){}
+  -TCNT0=OCRA0
+  ISR(TIMER0_COMPB_vect){}
+  -TCNT0=OCRB0
+  
+  OCR0A,OCR0B-registrii care contin valorile de prag 
+  
+  
