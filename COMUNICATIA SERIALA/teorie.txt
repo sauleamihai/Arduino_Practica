@@ -1,0 +1,28 @@
+permite transferul datelor bit cu bit intre doua sisteme digitale
+canalul TX folosit pentru a transmite date RX primeste date 
+modul de functionare sincrona sau asincrona utilizare rate de transfer foarte mari
+transferul se face cu pacehete de date care variaza intre 5 biti si 9 biti la acestia se adauga 1 sau 2 biti de stop
+mecanism de detecatare al erorilor verificarea paritatii mesajului 
+configurarea modului de comunicatie seriala se realizeaza prin urmatoarele registre 
+
+      UDR0                UCSR0A                                    UCSR0B                        UCSR0C 
+registru buffer     RXC0-receptie completa                 RXCIE0-intrerupere receptie      USMEL0n-00-asinc,01-sinc,10-rez,11-MSPI-functionare USART0
+receptia datelor    TXC0-transmisie completa               TXCIE0-intrerupere transmisie    UPMn-00-dez,01-rez,10-activat PP,11-activat PI
+pe seriala          UDRE0-registru de date este gol        UDRIE0-intrerupere registru gol  USBS0-numarul de biti de stop
+                    FE0-eroare transmitere                 RXEN-activarea receptie          UCSZ0n-dimensiunea mesaj 000-5 biti
+-8 biti dim         DOR0-detectare bit nou de start        TXEN-acivare transmisie                                   001-6 biti
+                    UPE0-eroare de pritate                 UCSZ02-dim mesaj +UCSZ[0:1]                               010-7 biti
+-mesaj 5 7 biti     U2X0-rata de transfer de la 16 la 8    RXB80-bit 9 al mesaj UDR0                                 011-8 biti
+                    MPCM0-functionare multiprocesor        RXB80-bit 9 al mesaj UDR0                                 100-rez,101,110
+					                                                                                                 111-9 biti de date 
+-por sup ignor                                                                               UCPOL0-polaritate semnal ceas                        
+
+-set o receptie
+
+-date incarcate 
+reg de deplasare
+transmitere TX
+
+-receptie datele 
+buffer umplere
+copiere UDR0
