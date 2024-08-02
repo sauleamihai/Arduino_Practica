@@ -1,0 +1,12 @@
+electrically earasable programable read only memory 
+-formata din tranzistori de tip mosfet
+pentru un bit avem nevoie de doi tranzistori
+1024 bytes =16.000 tranzistori
+avem un gate care este bitul de selecti 
+apoi avem un floating gate care este sub control gate 
+daca aplicam 5v la control gate din cauza ca floating gate este izolat acesta va pastra 
+incarcarea electrica 
+iar la 0 aceasta dispare 
+SPI comunication is only for external memory 
+Adresele memory sunt de la 0 la 1023
+1 byte we can store a value between 0 to 255 to each cell
